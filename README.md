@@ -6,4 +6,5 @@
   - [Port info data](https://github.com/sctyner/slave-trade-data/blob/master/port_info.csv)
   - [Voyages](https://slavevoyages.org/voyage/database)
 
-![](https://raw.githubusercontent.com/wandabodnar/flowmap/master/data/trans_atlantic.gif "https://rpubs.com/WandaBodnar/643762")
+![](https://raw.githubusercontent.com/wandabodnar/flowmap/master/data/trans_atlantic.gif)
+[RPubs](https://rpubs.com/WandaBodnar/643762)
