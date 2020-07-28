@@ -7,4 +7,5 @@
   - [Voyages](https://slavevoyages.org/voyage/database)
 
 ![](https://raw.githubusercontent.com/wandabodnar/flowmap/master/data/trans_atlantic.gif)
+
 [RPubs](https://rpubs.com/WandaBodnar/643762)
