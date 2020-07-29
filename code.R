@@ -1,21 +1,33 @@
 ### CODE FOR FLOWMAP>BLUE ####
 
 library(dplyr)
+setwd("~/Flowmap/Tube")
 
-loc <- read.csv("port_info.csv")
-data <- read.csv("data_1.csv")
+stations <- read.csv("Stations.csv")
+from <- read.csv("From.csv")
 
-merged <- merge(loc, data, by = "From")
-#write.csv(merged, "from_data.csv")
+merged <- merge(stations, from, by = "Station")
+write.csv(merged, "from_data.csv")
 
 from_data <- read.csv("from_data.csv")
 
 from_data2 <- from_data %>% 
-  group_by(From, From_ID, Long, Lat, Place_ID, To, Year) %>% 
+  group_by(From, To) %>% 
   summarise(x = sum(Count))
 
-merged <- merge(loc, from_data2, by = "To")
-#write.csv(merged, "to_data.csv")
+stations <- read.csv("Stations.csv")
+from_data <- read.csv("from_data.csv")
+
+merged <- merge(stations, from_data, by = "Station")
+write.csv(merged, "to_data.csv")
+
+to_data <- read.csv("to_data.csv")
+
+to_data2 <- to_data %>% 
+  group_by(From, To) %>% 
+  summarise(x = sum(Count))
+
+write.csv(to_data2, "to_data2.csv")
 
 -------------------------------------------------
 
@@ -26,5 +38,5 @@ library(flowmapblue)
 
 locations <- read.csv('https://raw.githubusercontent.com/wandabodnar/flowmap/master/data/locations.csv')
 flows <- read.csv('https://raw.githubusercontent.com/wandabodnar/flowmap/master/data/flows.csv')
-mapboxAccessToken <- 'pk.eyJ1Ijoid2FuZGFib2RuYXIiLCJhIjoiY2tjbG4xd3p0MjRwcDJycGZ0YWpqcjVobCJ9.3U_AmR38W__wuBjUjqWC3Q'
+mapboxAccessToken <- 'token'
 flowmapblue(locations, flows, mapboxAccessToken, clustering = FALSE, darkMode = TRUE, animation = TRUE)
