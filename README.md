@@ -5,6 +5,7 @@
 - Data sources
   - [Port info data](https://github.com/sctyner/slave-trade-data/blob/master/port_info.csv)
   - [Voyages](https://slavevoyages.org/voyage/database)
+  - [Basemap](https://github.com/mapbox/mapbox-gl-vintage-style)
 
 ![](https://raw.githubusercontent.com/wandabodnar/flowmap/master/data/trans_atlantic.gif)
 
