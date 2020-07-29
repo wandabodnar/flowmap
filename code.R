@@ -1,33 +1,31 @@
 ### CODE FOR FLOWMAP>BLUE ####
 
 library(dplyr)
-setwd("~/Flowmap/Tube")
+setwd("~/Flowmap/data")
 
-stations <- read.csv("Stations.csv")
-from <- read.csv("From.csv")
-
-merged <- merge(stations, from, by = "Station")
-write.csv(merged, "from_data.csv")
+port <- read.csv("port_info.csv")
+from <- read.csv("data_1.csv")
+merged <- merge(port, from, by = "Start")
+#write.csv(merged, "from_data.csv")
 
 from_data <- read.csv("from_data.csv")
+merged <- merge(port, from_data, by = "Start")
+#write.csv(merged, "purchase_data.csv")
 
-from_data2 <- from_data %>% 
-  group_by(From, To) %>% 
+purchase_data <- read.csv("purchase_data.csv")
+merged <- merge(port, purchase_data, by = "Start")
+#write.csv(merged, "end_data.csv")
+
+end_data <- read.csv("end_data.csv")
+from_purchase <- end_data %>% 
+  group_by(From_ID, Purchase_ID) %>% 
   summarise(x = sum(Count))
+#write.csv(from_purchase, "from_purchase.csv")
 
-stations <- read.csv("Stations.csv")
-from_data <- read.csv("from_data.csv")
-
-merged <- merge(stations, from_data, by = "Station")
-write.csv(merged, "to_data.csv")
-
-to_data <- read.csv("to_data.csv")
-
-to_data2 <- to_data %>% 
-  group_by(From, To) %>% 
+purchase_end <- end_data %>% 
+  group_by(Purchase_ID, End_ID, Year) %>% 
   summarise(x = sum(Count))
-
-write.csv(to_data2, "to_data2.csv")
+#write.csv(purchase_end, "purchase_end.csv")
 
 -------------------------------------------------
 
@@ -36,7 +34,7 @@ write.csv(to_data2, "to_data2.csv")
 #devtools::install_github("FlowmapBlue/flowmapblue.R")
 library(flowmapblue)
 
-locations <- read.csv('https://raw.githubusercontent.com/wandabodnar/flowmap/master/data/locations.csv')
-flows <- read.csv('https://raw.githubusercontent.com/wandabodnar/flowmap/master/data/flows.csv')
+flows <- read.csv('https://raw.githubusercontent.com/wandabodnar/flowmap/master/flows.csv')
+locations <- read.csv('https://raw.githubusercontent.com/wandabodnar/flowmap/master/locations.csv')
 mapboxAccessToken <- 'token'
 flowmapblue(locations, flows, mapboxAccessToken, clustering = FALSE, darkMode = TRUE, animation = TRUE)
