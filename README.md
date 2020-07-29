@@ -1,4 +1,4 @@
-# Flowmap examples: 
+# Flowmap
 
 ## [Trans-atlantic slave trade](https://wandabodnar.github.io/flowmap/transatlantic.html)
 
